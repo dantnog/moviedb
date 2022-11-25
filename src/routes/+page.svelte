@@ -1,59 +1,46 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import { onMount } from 'svelte'
+  import { API, KEY } from '../lib/api'
+  import MovieCard from '../lib/components/MovieCard.svelte'
+
+  let trending
+  let media = 'movie'
+  let time = 'week'
+
+  async function load() {
+    const data = await fetch(
+			`${API}/trending/${media}/${time}${KEY}&page=1&language=en-US`
+		).then(res => res.json())
+    trending = data.results
+  }
+
+  onMount(load())
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
 
-		to your new<br />SvelteKit app
-	</h1>
+<div class="flex align-center my-6 space-x-4">
+  <h2 class="text-2xl">Trending</h2>
+  <select name="media" id="media" bind:value={media} on:change={load}  class="bg-gray-100 dark:bg-gray-800 rounded-md px-2 py-1">
+    <option value="movie" class="">Movies</option>
+    <option value="tv" class="">Tv Shows</option>
+  </select>
+  <select name="time" id="time"  bind:value={time} on:change={load} class="bg-gray-100 dark:bg-gray-800 rounded-md px-2 py-1">
+    <option value="week" class="">Week</option>
+    <option value="day" class="">Day</option>
+  </select>
+</div>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
 
-	<Counter />
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+{#if trending}
+  <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+    {#each trending as show (show.id)}
+      <MovieCard item={show} />
+    {/each}
+  </div>
+{:else} 
+  <h3 class="">Loading...</h3>
+{/if}
