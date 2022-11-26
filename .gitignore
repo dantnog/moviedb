@@ -1,10 +1,4 @@
 .svelte-kit
 node_modules
 
-
 src/lib/api.js
-
-// create api.js file or use a .env
-// api.js example:
-// export const KEY = "?api_key=<THE-MOVIE-DB-KEY>"
-// export const API = "https://api.themoviedb.org/3"
