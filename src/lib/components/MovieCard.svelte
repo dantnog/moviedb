@@ -2,7 +2,7 @@
   export let item;
 </script>
 
-<div class="rounded-lg overflow-hidden hover:bg-gray-100 dark:hover:bg-gray-800 group">
+<div class="rounded-lg overflow-hidden hover:bg-gray-100 dark:hover:bg-gray-800 hover:shadow-lg group">
   <a href={`/${item.title ? 'movie' : 'tv'}/${item.id}`} class="">
     <div class="overflow-hidden h-68">
       <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title || item.name} 

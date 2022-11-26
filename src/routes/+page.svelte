@@ -14,11 +14,11 @@
     trending = data.results
   }
 
-  onMount(load())
+  onMount(() => load())
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Trendings</title>
 </svelte:head>
 
 
@@ -42,5 +42,5 @@
     {/each}
   </div>
 {:else} 
-  <h3 class="">Loading...</h3>
+  <h2 class="m-auto text-2xl">Loading...</h2>
 {/if}
