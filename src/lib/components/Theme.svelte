@@ -10,8 +10,8 @@
 <button 
   on:click={changeTheme}
   class="ml-2">
-  {#if dark === true}
-    &#127774;
+  {#if dark}
+    &#9728;
   {:else}
     &#127770;
   {/if}

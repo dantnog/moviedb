@@ -18,99 +18,110 @@
 
 
 {#if movie}
-<section class="max-w-xl mx-auto my-6">
-  <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="Poster" class="rounded-md">
-  <h2 class="text-3xl font-semibold text-blue-500/80 my-4">
-    {movie.title}
-  </h2>
-  <p class="my-4">{movie.overview}</p>
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mx-auto my-6">
+  <div class="lg:col-span-3">
+    <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="Poster" class="rounded-md">
+    <h2 class="text-3xl font-semibold text-blue-500/80 my-4">
+      {movie.title}<span class="ml-4 text-yellow-500 text-2xl">&#9733;{movie.vote_average.toFixed(1)}</span>
+    </h2>
+    <a href={`https://www.imdb.com/title/${movie.imdb_id}`} class="bg-yellow-400 text-gray-800 font-bold px-4 rounded-md">
+      IMDb
+    </a>
+    {#if movie.homepage}
+    <a href={movie.homepage} class="bg-green-400 font-bold text-gray-800 px-4 rounded-md">
+      HOMEPAGE
+    </a>
+    {/if}
+    <p class="my-4">{movie.overview}</p>
+  </div>
 
-  <table class="table-fixed">
-    <tbody class="">
-      <tr class="">
-        <th class="text-left w-32">
-          Companies
-        </th>
-        <td class="">
-        { movie.production_companies.map(item => item.name).join(', ') }
-        </td>
-      </tr>
+  <div class="lg:col-span-2">
+    <table class="table-fixed">
+      <tbody class="text-left">
+        <tr class="border-b-8 border-transparent">
+          <th class="w-32">
+            Companies
+          </th>
+          <td class="">
+          { movie.production_companies.map(item => item.name).join(', ') }
+          </td>
+        </tr>
 
-      <tr class="text-left">
-        <th class="">
-          Countries
-        </th>
-        <td class="">
-        { movie.production_countries.map(item => item.name).join(', ') }
-        </td>
-      </tr>
+        <tr class="border-y-8 border-transparent">
+          <th class="">
+            Countries
+          </th>
+          <td class="">
+          { movie.production_countries.map(item => item.name).join(', ') }
+          </td>
+        </tr>
 
-      <tr class="text-left">
-        <th class="">
-          Genres
-        </th>
-        <td class="">
-        { movie.genres.map(item => item.name).join(', ') }
-        </td>
-      </tr>
+        <tr class="border-y-8 border-transparent">
+          <th class="">
+            Spoken Languages
+          </th>
+          <td class="">
+          { movie.spoken_languages?.map(item => item.name).join(', ') }
+          </td>
+        </tr>
 
-      <tr class="text-left">
-        <th class="">
-          Release Date
-        </th>
-        <td class="">
-          {movie.release_date}
-        </td>
-      </tr>
-      
-      <tr class="text-left">
-        <th class="">
-          Runtime
-        </th>
-        <td class="">
-          {movie.runtime} minutes
-        </td>
-      </tr>
+        <tr class="border-y-8 border-transparent">
+          <th class="">
+            Genres
+          </th>
+          <td class="">
+          { movie.genres.map(item => item.name).join(', ') }
+          </td>
+        </tr>
 
-      <tr class="text-left">
-        <th class="">
-          Budget
-        </th>
-        <td class="">
-          R${movie.budget.toFixed(2)}
-        </td>
-      </tr>
+        <tr class="border-y-8 border-transparent">
+          <th class="">
+            Release Date
+          </th>
+          <td class="">
+            {movie.release_date}
+          </td>
+        </tr>
+        
+        <tr class="border-y-8 border-transparent">
+          <th class="">
+            Runtime
+          </th>
+          <td class="">
+            {movie.runtime} minutes
+          </td>
+        </tr>
 
-      <tr class="text-left">
-        <th class="">
-          Revenue
-        </th>
-        <td class="">
-          R${movie.revenue.toFixed(2)}
-        </td>
-      </tr>
+        <tr class="border-y-8 border-transparent">
+          <th class="">
+            Budget
+          </th>
+          <td class="">
+            R${movie.budget.toFixed(2)}
+          </td>
+        </tr>
 
-      <tr class="text-left">
-        <th class="">
-          Vote Average
-        </th>
-        <td class="">
-          {movie.vote_average.toFixed(1)}
-        </td>
-      </tr>
+        <tr class="border-y-8 border-transparent">
+          <th class="">
+            Revenue
+          </th>
+          <td class="">
+            R${movie.revenue.toFixed(2)}
+          </td>
+        </tr>
 
-      <tr class="text-left">
-        <th class="">
-          Vote Count
-        </th>
-        <td class="">
-          {movie.vote_count}
-        </td>
-      </tr>
+        <tr class="border-t-8 border-transparent">
+          <th class="">
+            Vote Count
+          </th>
+          <td class="">
+            {movie.vote_count}
+          </td>
+        </tr>
 
-    </tbody>
-  </table>
-
+      </tbody>
+    </table>
+  </div>
 </section>
 
 {:else}
