@@ -7,7 +7,7 @@
 <div class="">
 	<Header />
 
-	<main class="px-4">
+	<main class="px-2 sm:px-6">
 		<slot />
 	</main>
 
