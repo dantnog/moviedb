@@ -12,6 +12,7 @@
 			`${API}/trending/${media}/${time}${KEY}&page=1&language=en-US`
 		).then(res => res.json())
     trending = data.results
+    console.log(trending)
   }
 
   onMount(() => load())
@@ -27,6 +28,8 @@
   <select name="media" id="media" bind:value={media} on:change={load}  class="bg-gray-100 dark:bg-gray-800 rounded-md px-2 py-1">
     <option value="movie" class="">Movies</option>
     <option value="tv" class="">Tv Shows</option>
+    <option value="person" class="">Person</option>
+    <option value="all" class="">All</option>
   </select>
   <select name="time" id="time"  bind:value={time} on:change={load} class="bg-gray-100 dark:bg-gray-800 rounded-md px-2 py-1">
     <option value="week" class="">Week</option>
