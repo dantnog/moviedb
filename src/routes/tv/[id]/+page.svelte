@@ -164,7 +164,6 @@
       </tbody>
     </table>
   </div>
-
 </section>
 
 {:else}

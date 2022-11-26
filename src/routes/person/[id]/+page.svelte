@@ -19,13 +19,13 @@
 
 
 {#if person}
-<section class="grid grid-cols-3 gap-6 mx-auto my-6">
-  <div class="max-w-xl">
+<section class="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 my-6">
+  <div class="w-[55%] mx-auto sm:w-auto">
     <img src={`https://image.tmdb.org/t/p/original${person.profile_path}`} alt="Poster" class="rounded-md">
   </div>
 
-  <div class="col-span-2">
-    <h2 class="text-3xl font-semibold text-blue-500/80 my-4">
+  <div class="sm:col-span-2">
+    <h2 class="text-3xl font-semibold text-blue-500/80 mb-4">
       {person.name}
     </h2>
     <a href={`https://www.imdb.com/name/${person.imdb_id}`} class="bg-yellow-400 text-gray-800 font-bold px-4 rounded-md">
@@ -39,9 +39,9 @@
     <p class="my-4">{person.biography}</p>
 
     <table class="table-fixed">
-      <tbody class="">
-        <tr class="">
-          <th class="text-left w-32">
+      <tbody class="text-left">
+        <tr class="border-b-8 border-transparent">
+          <th class=" w-32">
             Place of birth
           </th>
           <td class="">
@@ -49,7 +49,7 @@
           </td>
         </tr>
 
-        <tr class="text-left">
+        <tr class="border-y-8 border-transparent">
           <th class="">
             Birthday
           </th>
@@ -59,7 +59,7 @@
         </tr>
         
         {#if person.deathday}
-        <tr class="text-left">
+        <tr class="border-t-8 border-transparent">
           <th class="">
             Birthday
           </th>
