@@ -8,6 +8,7 @@
 
   <nav class="">
     <A props={{name: "Home", link:"/"}} />
+    <A props={{name: "Discover", link:"/discover"}} />
     <A props={{name: "Search", link:"/search"}} />
     <Theme />
   </nav>
