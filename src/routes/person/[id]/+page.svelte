@@ -18,6 +18,11 @@
 </script>
 
 
+<svelte:head>
+	<title>{person ? person.name : 'Person'} - MovieDB</title>
+</svelte:head>
+
+
 {#if person}
 <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 my-6">
   <div class="w-[55%] mx-auto sm:w-auto">

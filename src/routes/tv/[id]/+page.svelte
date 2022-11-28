@@ -3,7 +3,8 @@
 	import { onMount } from 'svelte'
   import { API, KEY } from '../../../lib/api'
 
-  const id = $page.url.pathname.split('/')[2]
+  const currentPath = $page.url.pathname
+  const id = currentPath.split('/')[2]
 
   let tv
 
@@ -11,11 +12,16 @@
     tv = await fetch(
 			`${API}/tv/${id}${KEY}&language=en-US`
 		).then(res => res.json())
-    console.log(tv)
   }
 
   onMount(() => load())
 </script>
+
+
+
+<svelte:head>
+	<title>{tv ? tv.name : 'TV Show'} - MovieDB</title>
+</svelte:head>
 
 
 {#if tv}
@@ -32,22 +38,27 @@
     {/if}
     <p class="my-4">{tv.overview}</p>
 
+
     <div class="grid grid-cols-3 gap-4 lg:gap-6 lg:grid-cols-4">
     {#each tv.seasons as s}
-      <div class="rounded-lg overflow-hidden">
-        <img src={`https://image.tmdb.org/t/p/w500${s.poster_path}`} alt="Season Poster" class="">
-        <div class="p-2">
-          <h4 class="font-semibold truncate ">
-            {s.name}
-          </h4>
-          <p class="truncate">
-            {s.episode_count} episodes
-          </p>
+      <a href={`${currentPath}/season/${s.id}`}>
+        <div class="rounded-lg overflow-hidden">
+          <img src={`https://image.tmdb.org/t/p/w500${s.poster_path}`} alt="Season Poster" class="">
+          <div class="p-2">
+            <h4 class="font-semibold truncate ">
+              {s.name}
+            </h4>
+            <p class="truncate">
+              {s.episode_count} episodes
+            </p>
+          </div>
         </div>
-      </div>
+      </a>
     {/each}
     </div>
   </div>
+
+
 
   <div class="lg:col-span-2">
     <table class="table-fixed">

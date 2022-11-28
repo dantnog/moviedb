@@ -20,7 +20,7 @@
 
 
 <svelte:head>
-	<title>Trending - MovieDB</title>
+	<title>Search - MovieDB</title>
 </svelte:head>
 
 

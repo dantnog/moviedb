@@ -17,6 +17,10 @@
 </script>
 
 
+<svelte:head>
+	<title>{movie ? movie.title : 'Movie'} - MovieDB</title>
+</svelte:head>
+
 {#if movie}
 <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mx-auto my-6">
   <div class="lg:col-span-3">
