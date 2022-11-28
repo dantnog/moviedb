@@ -11,7 +11,7 @@
 		<slot />
 	</main>
 
-	<footer class="h-10 bg-gray-100 dark:bg-gray-800 flex justify-center">
+	<footer class="h-10 bg-gray-200 dark:bg-gray-800 flex justify-center">
 		<div class="flex place-items-center space-x-2">
 			<p class="">Data fetched from</p>
 			<img src={tmdb} alt="The Movie DB" class="h-3">

@@ -2,7 +2,7 @@
 
 An application made with [`SvelteKit`](https://kit.svelte.dev/)
 
-## Startring with
+## Starting with
 
 Clone the repo and install the dependences
 
