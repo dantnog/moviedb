@@ -5,11 +5,42 @@
 
   let media = 'movie'
   let sort_by = 'popularity.desc'
+  let page = 1
+  let pages = []
 
   let results
 
+  function changePage(step) {
+    page += step
+    if (page < 1 || page > 1000) {
+      page += -step
+      return
+    }
+    load()
+  }
+
+  function selectPage(num) {
+    if (num == page) return
+    if (num < 1 || num > 1000) return
+    page = num
+    load()
+  }
+
+  function preparePages() {
+    let count = page - 5
+    let newpages = []
+    while (newpages.length < 11) {
+      if (count > 0 && count < 1000) {
+        newpages.push(count)
+      }
+      count += 1
+    }
+    pages = newpages
+  }
+
   async function load() {
-    let query = `${API}/discover/${media}${KEY}&sort_by=${sort_by}&page=1&language=en-US`
+    preparePages()
+    let query = `${API}/discover/${media}${KEY}&sort_by=${sort_by}&page=${page}&language=en-US`
     const data = await fetch(
 			query
 		).then(res => res.json())
@@ -53,3 +84,22 @@
 {:else} 
   <h2 class="m-auto text-2xl">Loading...</h2>
 {/if}
+
+<div class="flex justify-center mb-6">
+  <div class="overflow-hidden rounded-md space-x-0">
+    <button on:click={() => changePage(-1)} class="px-4 h-10 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 hover:dark:bg-gray-700">
+      Prev
+    </button>
+    {#each pages as pag (pag)}
+    <button on:click={() => selectPage(pag)} 
+      class="w-10 h-10 
+      {pag === page ? "bg-blue-500/80" : "bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 hover:dark:bg-gray-700"}"
+    >
+      {pag}
+    </button>
+    {/each}
+    <button on:click={() => changePage(1)} class="px-4 h-10 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 hover:dark:bg-gray-700">
+      Next
+    </button>
+  </div>
+</div>
