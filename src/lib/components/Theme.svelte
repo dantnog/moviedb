@@ -9,7 +9,7 @@
 
 <button 
   on:click={changeTheme}
-  class="ml-2">
+  class="w-full px-2 py-2">
   {#if dark}
     &#9728;
   {:else}

@@ -9,12 +9,12 @@
   let results
 
   async function load() {
-    let query = `${API}/discover/${media}/${KEY}&sort_by=${sort_by}&page=1&language=en-US`
+    let query = `${API}/discover/${media}${KEY}&sort_by=${sort_by}&page=1&language=en-US`
     const data = await fetch(
 			query
 		).then(res => res.json())
     results = data.results
-    console.log(results)
+    console.log(query)
   }
 
   onMount(() => load())
